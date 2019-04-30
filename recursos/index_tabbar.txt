@@ -1,0 +1,14 @@
+{
+    swipeEnabled: true,
+    tabBarOptions: {
+      showLabel: false,
+      showIcon: true,
+      inactiveBackgroundColor: "#B727FF",
+      activeBackgroundColor: "#B727FF",
+      activeTintColor: "#FFFFFF",
+      inactiveTintColor: "#FFFFFF",
+      style: {
+        height: 50
+      }
+    }
+  }
