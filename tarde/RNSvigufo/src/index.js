@@ -1,7 +1,8 @@
-import { createBottomTabNavigator, createAppContainer, createDrawerNavigator } from "react-navigation";
+// react-router
 
 import Main from "./pages/main";
 import Profile from "./pages/profile";
+import { createBottomTabNavigator, createAppContainer } from "react-navigation";
 
 const MainNavigator = createBottomTabNavigator(
   {
@@ -9,14 +10,12 @@ const MainNavigator = createBottomTabNavigator(
     Profile
   },
   {
-    swipeEnabled: true,
+    initialRouteName: "Main",
     tabBarOptions: {
       showLabel: false,
       showIcon: true,
       inactiveBackgroundColor: "#dd99ff",
       activeBackgroundColor: "#B727FF",
-      activeTintColor: "#FFFFFF",
-      inactiveTintColor: "#FFFFFF",
       style: {
         height: 50
       }
