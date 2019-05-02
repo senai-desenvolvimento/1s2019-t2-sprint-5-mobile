@@ -2,17 +2,9 @@ import React, { Component } from "react";
 
 import { Text, Image, StyleSheet, View, FlatList } from "react-native";
 
-class Main extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      listaEventos: [
-        { id: 1, titulo: "Titulo A", dataEvento: "18/03/2018" },
-        { id: 2, titulo: "Titulo B", dataEvento: "18/03/2018" }
-      ]
-    };
-  }
+import api from "../services/api";
 
+class Main extends Component {
   static navigationOptions = {
     tabBarIcon: ({ tintColor }) => (
       <Image
@@ -20,6 +12,26 @@ class Main extends Component {
         style={styles.tabNavigatorIconHome}
       />
     )
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      listaEventos: []
+    };
+  }
+
+  componentDidMount() {
+    // realizar a chamada a api
+    // emulator -list-avds
+    // emulator -avd nomeAVD
+    this.carregarEventos();
+  }
+
+  carregarEventos = async () => {
+    const resposta = await api.get("/eventos");
+    const dadosDaApi = resposta.data;
+    this.setState({ listaEventos: dadosDaApi });
   };
 
   render() {
@@ -36,16 +48,15 @@ class Main extends Component {
           </View>
           <View style={styles.mainHeaderLine} />
         </View>
+
         {/* conteudo - body - section */}
         <View style={styles.mainBody}>
-
           <FlatList
             contentContainerStyle={styles.mainBodyConteudo}
             data={this.state.listaEventos}
             keyExtractor={item => item.id}
             renderItem={this.renderizaItem}
           />
-
         </View>
       </View>
     );
@@ -54,7 +65,6 @@ class Main extends Component {
   renderizaItem = ({ item }) => (
     // <Text style={{ fontSize: 20, color: 'red' }}>{item.titulo}</Text>
     <View style={styles.flatItemLinha}>
-
       <View style={styles.flatItemContainer}>
         <Text style={styles.flatItemTitulo}>{item.titulo}</Text>
         <Text style={styles.flatItemData}>{item.dataEvento}</Text>
@@ -66,7 +76,6 @@ class Main extends Component {
           style={styles.flatItemImgIcon}
         />
       </View>
-      
     </View>
   );
 }
