@@ -1,7 +1,15 @@
-import { createBottomTabNavigator, createAppContainer, createDrawerNavigator } from "react-navigation";
+import {
+  createBottomTabNavigator,
+  createAppContainer,
+  createStackNavigator,
+  createSwitchNavigator
+} from "react-navigation";
 
 import Main from "./pages/main";
 import Profile from "./pages/profile";
+import SignIn from "./pages/signin";
+
+const AuthStack = createStackNavigator({ SignIn });
 
 const MainNavigator = createBottomTabNavigator(
   {
@@ -9,6 +17,7 @@ const MainNavigator = createBottomTabNavigator(
     Profile
   },
   {
+    initialRouteName: "Main",
     swipeEnabled: true,
     tabBarOptions: {
       showLabel: false,
@@ -24,4 +33,16 @@ const MainNavigator = createBottomTabNavigator(
   }
 );
 
-export default createAppContainer(MainNavigator);
+//export default createAppContainer(MainNavigator);
+
+export default createAppContainer(
+  createSwitchNavigator(
+    {
+      MainNavigator,
+      AuthStack
+    },
+    {
+      initialRouteName: "AuthStack"
+    }
+  )
+);
