@@ -1,8 +1,15 @@
-// react-router
+import {
+  createBottomTabNavigator,
+  createAppContainer,
+  createStackNavigator,
+  createSwitchNavigator
+} from "react-navigation";
 
 import Main from "./pages/main";
 import Profile from "./pages/profile";
-import { createBottomTabNavigator, createAppContainer } from "react-navigation";
+import SignIn from "./pages/signin";
+
+const AuthStack = createStackNavigator({ SignIn });
 
 const MainNavigator = createBottomTabNavigator(
   {
@@ -11,11 +18,14 @@ const MainNavigator = createBottomTabNavigator(
   },
   {
     initialRouteName: "Main",
+    swipeEnabled: true,
     tabBarOptions: {
       showLabel: false,
       showIcon: true,
       inactiveBackgroundColor: "#dd99ff",
       activeBackgroundColor: "#B727FF",
+      activeTintColor: "#FFFFFF",
+      inactiveTintColor: "#FFFFFF",
       style: {
         height: 50
       }
@@ -23,4 +33,16 @@ const MainNavigator = createBottomTabNavigator(
   }
 );
 
-export default createAppContainer(MainNavigator);
+//export default createAppContainer(MainNavigator);
+
+export default createAppContainer(
+  createSwitchNavigator(
+    {
+      MainNavigator,
+      AuthStack
+    },
+    {
+      initialRouteName: "AuthStack"
+    }
+  )
+);

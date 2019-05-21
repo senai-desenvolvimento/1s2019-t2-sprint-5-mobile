@@ -1,0 +1,7 @@
+Criar uma splashscreen
+Criar função de logout
+Caso o usuário já tenha logado uma vez, redirecioná-lo diretamente para a Home
+Mostrar cores diferentes para os diferentes status de consulta
+Criar um combo de pesquisa para paciente e outro de status
+Trocar o ícone do aplicativo -> dica : illustrator, https://appicon.co/ (recomendamos)
+Colocar mapa

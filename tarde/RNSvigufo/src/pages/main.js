@@ -22,21 +22,23 @@ class Main extends Component {
   }
 
   componentDidMount() {
+    // realizar a chamada a api
+    // emulator -list-avds
+    // emulator -avd nomeAVD
     this.carregarEventos();
   }
 
   carregarEventos = async () => {
     const resposta = await api.get("/eventos");
     const dadosDaApi = resposta.data;
-    this.setState({ listaEventos : dadosDaApi });
+    this.setState({ listaEventos: dadosDaApi });
   };
 
   render() {
     return (
       <View style={styles.main}>
-        {/* cabecalho */}
+        {/* Cabecalho - header */}
         <View style={styles.mainHeader}>
-          {/* linha do titulo */}
           <View style={styles.mainHeaderRow}>
             <Image
               source={require("../assets/img/calendar.png")}
@@ -44,10 +46,10 @@ class Main extends Component {
             />
             <Text style={styles.mainHeaderText}>{"Eventos".toUpperCase()}</Text>
           </View>
-          {/* borda */}
           <View style={styles.mainHeaderLine} />
         </View>
 
+        {/* conteudo - body - section */}
         <View style={styles.mainBody}>
           <FlatList
             contentContainerStyle={styles.mainBodyConteudo}
@@ -61,11 +63,13 @@ class Main extends Component {
   }
 
   renderizaItem = ({ item }) => (
+    // <Text style={{ fontSize: 20, color: 'red' }}>{item.titulo}</Text>
     <View style={styles.flatItemLinha}>
       <View style={styles.flatItemContainer}>
         <Text style={styles.flatItemTitulo}>{item.titulo}</Text>
         <Text style={styles.flatItemData}>{item.dataEvento}</Text>
       </View>
+
       <View style={styles.flatItemImg}>
         <Image
           source={require("../assets/img/view.png")}
@@ -96,7 +100,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center"
-    // backgroundColor: "red"
   },
   // imagem do cabeçalho
   mainHeaderImg: {
@@ -122,7 +125,7 @@ const styles = StyleSheet.create({
   },
   // corpo do texto
   mainBody: {
-    // backgroundColor: "blue",
+    // backgroundColor: "#999999",
     flex: 4
   },
   // conteúdo da lista
